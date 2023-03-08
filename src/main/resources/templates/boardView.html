@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>상세페이지</title>
+
+    <script>
+        function deleteBoard(){
+            document.getElementById("frm").action="/board/delete";
+            document.getElementById("frm").submit();
+        }
+
+        function modifyBoard(){
+            document.getElementById("frm").action="/board/modify";
+            document.getElementById("frm").submit();
+        }
+
+    </script>
+</head>
+
+<body>
+<form id="frm" name="frm" method="poost">
+    <input type="hidden" id="id" name="id" th:value='${board.id}'/>
+    <h1 th:text="${board.title}"></h1>
+    <p th:text="${board.content}">보여주는 곳입니다.</p>
+    <a th:href="@{${board.filepath}}">다운로드</a>
+    <input type="button" onclick="javascript:modifyBoard();" value="수정"/>
+    <input type="button" onclick="javascript:deleteBoard();" value="삭제"/>
+</form>
+</body>
+</html>
